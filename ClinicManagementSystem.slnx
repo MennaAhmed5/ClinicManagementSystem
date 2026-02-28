@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ClinicManagementSystem.BL/ClinicManagementSystem.BL.csproj" />
+  <Project Path="ClinicManagementSystem.DAL/ClinicManagementSystem.DAL.csproj" />
+  <Project Path="ClinicManagementSystem/ClinicManagementSystem.MVC.csproj" />
+</Solution>
