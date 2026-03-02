@@ -21,11 +21,13 @@ namespace ClinicManagementSystem.DAL.Data.Models
         public TimeOnly StartTime { get; set; }
 
         [Required]
-        public TimeOnly EndTime { get; set; }         
+        public TimeOnly EndTime { get; set; }
 
         public virtual Doctor Doctor { get; set; } = null!;
 
         public virtual Patient Patient { get; set; } = null!;
+
+
 
     }
 }

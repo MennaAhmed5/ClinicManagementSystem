@@ -8,5 +8,7 @@ namespace ClinicManagementSystem.DAL.Repositories.Appointments
 {
     public interface IAppointmentRepository: IGenericRepository<Appointment>
     {
+        IEnumerable<Appointment> GetAppointmentsByDoctorIdAndDate (int doctorId, DateOnly date);
+        IEnumerable<Appointment>  GetAllWithRelations ();   
     }
 }

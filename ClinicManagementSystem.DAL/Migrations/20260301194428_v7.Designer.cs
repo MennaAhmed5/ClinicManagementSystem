@@ -4,6 +4,7 @@ using ClinicManagementSystem.DAL.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicManagementSystem.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260301194428_v7")]
+    partial class v7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +48,9 @@ namespace ClinicManagementSystem.DAL.Migrations
                     b.Property<TimeOnly>("StartTime")
                         .HasColumnType("time");
 
+                    b.Property<int>("VisitLength")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
@@ -61,7 +67,8 @@ namespace ClinicManagementSystem.DAL.Migrations
                             DoctorId = 1,
                             EndTime = new TimeOnly(16, 30, 0),
                             PatientId = 1,
-                            StartTime = new TimeOnly(16, 0, 0)
+                            StartTime = new TimeOnly(16, 0, 0),
+                            VisitLength = 30
                         },
                         new
                         {
@@ -70,7 +77,8 @@ namespace ClinicManagementSystem.DAL.Migrations
                             DoctorId = 1,
                             EndTime = new TimeOnly(17, 0, 0),
                             PatientId = 2,
-                            StartTime = new TimeOnly(16, 30, 0)
+                            StartTime = new TimeOnly(16, 30, 0),
+                            VisitLength = 30
                         },
                         new
                         {
@@ -79,7 +87,8 @@ namespace ClinicManagementSystem.DAL.Migrations
                             DoctorId = 2,
                             EndTime = new TimeOnly(18, 30, 0),
                             PatientId = 3,
-                            StartTime = new TimeOnly(18, 0, 0)
+                            StartTime = new TimeOnly(18, 0, 0),
+                            VisitLength = 30
                         },
                         new
                         {
@@ -88,7 +97,8 @@ namespace ClinicManagementSystem.DAL.Migrations
                             DoctorId = 2,
                             EndTime = new TimeOnly(19, 0, 0),
                             PatientId = 4,
-                            StartTime = new TimeOnly(18, 30, 0)
+                            StartTime = new TimeOnly(18, 30, 0),
+                            VisitLength = 30
                         });
                 });
 
@@ -316,6 +326,13 @@ namespace ClinicManagementSystem.DAL.Migrations
                         new
                         {
                             DoctorId = 1,
+                            Day = 5,
+                            EndTime = new TimeOnly(20, 0, 0),
+                            StartTime = new TimeOnly(16, 0, 0)
+                        },
+                        new
+                        {
+                            DoctorId = 1,
                             Day = 6,
                             EndTime = new TimeOnly(20, 0, 0),
                             StartTime = new TimeOnly(16, 0, 0)
@@ -358,6 +375,13 @@ namespace ClinicManagementSystem.DAL.Migrations
                         new
                         {
                             DoctorId = 2,
+                            Day = 5,
+                            EndTime = new TimeOnly(20, 0, 0),
+                            StartTime = new TimeOnly(16, 0, 0)
+                        },
+                        new
+                        {
+                            DoctorId = 2,
                             Day = 6,
                             EndTime = new TimeOnly(20, 0, 0),
                             StartTime = new TimeOnly(16, 0, 0)
@@ -400,6 +424,13 @@ namespace ClinicManagementSystem.DAL.Migrations
                         new
                         {
                             DoctorId = 3,
+                            Day = 5,
+                            EndTime = new TimeOnly(20, 0, 0),
+                            StartTime = new TimeOnly(16, 0, 0)
+                        },
+                        new
+                        {
+                            DoctorId = 3,
                             Day = 6,
                             EndTime = new TimeOnly(20, 0, 0),
                             StartTime = new TimeOnly(16, 0, 0)
@@ -436,6 +467,13 @@ namespace ClinicManagementSystem.DAL.Migrations
                         {
                             DoctorId = 4,
                             Day = 4,
+                            EndTime = new TimeOnly(20, 0, 0),
+                            StartTime = new TimeOnly(16, 0, 0)
+                        },
+                        new
+                        {
+                            DoctorId = 4,
+                            Day = 5,
                             EndTime = new TimeOnly(20, 0, 0),
                             StartTime = new TimeOnly(16, 0, 0)
                         },

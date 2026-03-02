@@ -8,5 +8,7 @@ namespace ClinicManagementSystem.DAL.Repositories.Patients
 {
     public interface IPatientRepository: IGenericRepository<Patient>
     {
+         Patient? GetPatientbyNameAndBirthdate(string name, DateOnly birthDate);
+         
     }
 }

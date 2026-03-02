@@ -18,5 +18,18 @@ namespace ClinicManagementSystem.BL.ViewModels.Patients
         
         public string Phone { get; set; } = string.Empty;
 
+
+        public PatientReadVM(int id, string name, DateOnly birthdate, string phone)
+        {
+            Id = id;
+            Name = name;
+            BirthDate = birthdate;
+            Phone = phone;
+        }
+        public PatientReadVM()
+        {
+
+        }
+
      }
 }

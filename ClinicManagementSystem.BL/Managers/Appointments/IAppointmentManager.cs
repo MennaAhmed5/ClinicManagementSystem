@@ -12,5 +12,9 @@ namespace ClinicManagementSystem.BL.Managers.Appointments
         void Add(AppointmentAddVM appointmentAddVM);
         void Edit(AppointmentEditVM appointmentEditVM);
         void Delete(int id);
+
+        IEnumerable<DoctorAppointmentsVM> GetAppointmentsByDoctorIdAndDate(int doctorId, DateOnly date);
+
+        IEnumerable<AppointmentReadVM> GetAllWithRelations();
     }
 }

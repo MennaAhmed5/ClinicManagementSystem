@@ -94,14 +94,92 @@ namespace ClinicManagementSystem.DAL.Data.Context
             );
 
             #endregion
+             
+            #region Patients 
+            modelBuilder.Entity<Patient>().HasData(
+                new Patient
+                {
+                   Id = 1,
+                   Name = "Youssef Khaled",
+                   BirthDate = new DateOnly(1992, 4, 18),
+                   Phone = "01055667788"
+                },
+                new Patient
+                {
+                   Id = 2,
+                   Name = "Nour Elhoda",
+                   BirthDate = new DateOnly(1998, 9, 3),
+                   Phone = "01122334455"
+                },
+                new Patient
+                {
+                   Id = 3,
+                   Name = "Karim Adel",
+                   BirthDate = new DateOnly(1987, 12, 27),
+                   Phone = "01299887766"
+                },
+                new Patient
+                {
+                   Id = 4,
+                   Name = "Hana Mostafa",
+                   BirthDate = new DateOnly(2001, 6, 14),
+                   Phone = "01533445566"
+                }
+            );
+            #endregion
+            #region Appointments
+            modelBuilder.Entity<Appointment>().HasData(
+
+            new Appointment
+            {
+               Id = 1,
+               DoctorId = 1,
+               PatientId = 1,
+               AppointmentDate = new DateOnly(2026, 3, 2),
+               StartTime = new TimeOnly(16, 0),
+               EndTime = new TimeOnly(16, 30),
+               
+            },
+            new Appointment
+            {
+               Id = 2,
+               DoctorId = 1,
+               PatientId = 2,
+               AppointmentDate = new DateOnly(2026, 3, 2),
+               StartTime = new TimeOnly(16, 30),
+               EndTime = new TimeOnly(17, 0),
+               
+            },
+            new Appointment
+            {
+               Id = 3,
+               DoctorId = 2,
+               PatientId = 3,
+               AppointmentDate = new DateOnly(2026, 3, 3),
+               StartTime = new TimeOnly(18, 0),
+               EndTime = new TimeOnly(18, 30),
+                
+            },
+             new Appointment
+              {
+                Id = 4,
+                DoctorId = 2,
+                PatientId = 4,
+                AppointmentDate = new DateOnly(2026, 3, 3),
+                StartTime = new TimeOnly(18, 30),
+                EndTime = new TimeOnly(19, 0),                
+               }
+            );
+            #endregion
+
             #region schedule
             var schedules = new List<Schedule>();
             int[] doctorsIds = { 1, 2, 3, 4 };
-            foreach(var doctorId in doctorsIds)
+            foreach (var doctorId in doctorsIds)
             {
-                foreach(WorkDay day in Enum.GetValues(typeof(DayOfWeek)))
+                foreach (WorkDay day in Enum.GetValues(typeof(WorkDay)))
                 {
-                    if(day == WorkDay.Friday)
+                    if (day == WorkDay.Friday)
                         continue;
 
                     schedules.Add(new Schedule()
@@ -116,7 +194,6 @@ namespace ClinicManagementSystem.DAL.Data.Context
             }
             modelBuilder.Entity<Schedule>().HasData(schedules);
             #endregion
-
             #endregion
         }
 

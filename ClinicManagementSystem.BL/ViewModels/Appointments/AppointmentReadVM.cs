@@ -10,10 +10,10 @@ namespace ClinicManagementSystem.BL.ViewModels.Appointments
     {
         public int Id { get; set; }
          
-        public int DoctorName { get; set; }
+        public string? DoctorName { get; set; }
 
       
-        public int PatientName { get; set; }
+        public string? PatientName { get; set; }
 
          
         public DateOnly AppointmentDate { get; set; }
@@ -23,9 +23,7 @@ namespace ClinicManagementSystem.BL.ViewModels.Appointments
        
         public TimeOnly EndTime { get; set; }
 
-        public virtual Doctor Doctor { get; set; } = null!;
-
-        public virtual Patient Patient { get; set; } = null!;
+        
 
     }
 }

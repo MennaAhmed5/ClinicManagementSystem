@@ -12,6 +12,8 @@ namespace ClinicManagementSystem.BL.Managers.Patients
         PatientEditVM? GetForEditById(int id);
         void Add(PatientAddVM patientAddVM);
         void Edit(PatientEditVM patientEditVM);
+
+        PatientReadVM? GetPatientbyNameAndBirthdate(string name, DateOnly birthdate);
         void Delete(int id);
     }
 }

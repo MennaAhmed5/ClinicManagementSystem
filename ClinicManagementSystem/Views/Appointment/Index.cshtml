@@ -1,0 +1,28 @@
+﻿@model List<AppointmentReadVM>
+
+<h2>Appointments</h2>
+<a asp-action="Add" asp-controller="Appointment" class="btn btn-success">Add Appointment </a>
+<table class="table table-striped border-1">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Doctor Name</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Appointment Date</th>
+            <th scope="col">Start time</th>
+            <th scope="col">End time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model){
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.DoctorName</td>
+            <td>@item.PatientName</td>
+            <td>@item.AppointmentDate</td>
+            <td>@item.StartTime</td>
+            <td>@item.EndTime</td>
+        </tr>
+        }
+    </tbody>
+</table>

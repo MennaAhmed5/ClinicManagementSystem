@@ -22,5 +22,6 @@ namespace ClinicManagementSystem.BL.ViewModels.Appointments
         [Required]
         public TimeOnly EndTime { get; set; }
 
+        
     }
 }

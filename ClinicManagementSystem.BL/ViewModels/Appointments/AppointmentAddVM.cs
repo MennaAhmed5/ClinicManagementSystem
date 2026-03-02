@@ -1,4 +1,5 @@
-﻿using ClinicManagementSystem.DAL.Data.Models;
+﻿using ClinicManagementSystem.BL.ViewModels.Patients;
+using ClinicManagementSystem.DAL.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,8 +13,7 @@ namespace ClinicManagementSystem.BL.ViewModels.Appointments
         [Required]
         public int DoctorId { get; set; }
 
-        [Required]
-        public int PatientId { get; set; }
+        public PatientAddVM? Patient { get; set; }       
 
         [Required]
         public DateOnly AppointmentDate { get; set; }
@@ -23,6 +23,7 @@ namespace ClinicManagementSystem.BL.ViewModels.Appointments
         [Required]
         public TimeOnly EndTime { get; set; }
 
+ 
 
     }
 }
