@@ -26,26 +26,7 @@ namespace ClinicManagementSystem.BL.Managers.Patients
             _unitOfWork.PatientRepository.Add(patient);
             _unitOfWork.SaveChanges();
         }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(PatientEditVM patientEditVM)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<PatientReadVM> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public PatientEditVM? GetForEditById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public PatientReadVM? GetPatientbyNameAndBirthdate(string name, DateOnly birthDate)
         {

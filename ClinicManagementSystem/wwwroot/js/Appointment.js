@@ -15,6 +15,7 @@
             });
 
             $("#appointmentDate").datepicker({
+                dateFormat: "yy-mm-dd", 
                 beforeShowDay: function (date) {
                     var day = date.getDay();
                     // Check if the current day index is in the allowedDays array
@@ -42,11 +43,58 @@ $("#appointmentDate").change(function () {
         dataType: "json",
         success: function (response) {
             var data = response.data;
+            $("#timeSlots").empty().append(`<option value="">-- Select Time --</option>`);
             data.forEach((currentElement, index) => {
                 //Array contains available days for  the selected doctor
                 $("#timeSlots").append(`<option value="${currentElement}"> ${currentElement} </option >`)
             });
 
+        }
+    });
+});
+
+
+$("#appointmentForm").submit(function (e) {
+
+    e.preventDefault();  
+    var doctorId = $("#doctorsDropdown").val();  
+    var appointmentDate = $("#appointmentDate").val(); 
+    var appointmentTime = $("#timeSlots").val();  
+
+     
+    if (!doctorId) {
+        toastr.error("Please select a doctor.");
+        return;  
+    }
+
+    if (!appointmentDate) {
+        toastr.error("Please select an appointment date.");
+        return;
+    }
+
+    if (!appointmentTime) {
+        toastr.error("Please select an appointment time.");
+        return;
+    }
+
+    $.ajax({
+        url: $(this).attr("action"),
+        type: "POST",
+        data: $(this).serialize(),
+        success: function (response) {
+
+            if (response.status == 'Success') {
+
+                toastr.success(response.message);
+
+                window.location.href = "/Appointment/Index"
+            }
+            else {
+                toastr.error(response.message);
+            }
+        },
+        error: function () {
+            toastr.error("Something went wrong.");
         }
     });
 });

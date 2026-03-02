@@ -51,22 +51,25 @@ namespace ClinicManagementSystem.MVC.Controllers
             {
               //check if patient exist 
               var patient =  _patientManager.GetPatientbyNameAndBirthdate(appointmentAddVM.Patient.Name, appointmentAddVM.Patient.BirthDate);
-              
-              //if not exist add it  then get 
-              if (patient == null)
-              {
+                
+                //if not exist add it  then get 
+                if (patient == null)
+                {
                     _patientManager.Add(appointmentAddVM.Patient);
                      patient = _patientManager.GetPatientbyNameAndBirthdate(appointmentAddVM.Patient.Name, appointmentAddVM.Patient.BirthDate);
-                     appointmentAddVM.Patient.Id = patient.Id;
+                    
 
-              }
-               //Add Appointment 
-              _appointmentManager.Add(appointmentAddVM);
+                }
+                if (patient != null)
+                    appointmentAddVM.Patient.Id = patient.Id;
+               
+                //Add Appointment  in db 
+                _appointmentManager.Add(appointmentAddVM);
                
 
             }
 
-            return View();
+            return Json(new { Status = "Success", Message= "Appointment created successfully." });
         }
 
         public IActionResult GetAvailableTimeSlots(int doctorId, DateOnly date)
@@ -90,7 +93,7 @@ namespace ClinicManagementSystem.MVC.Controllers
 
             //Generate free slots 
             int DefaultVisitLength = Convert.ToInt32(_configuration["ClincSetting:DefaultVisitLength"]);
-            var availableSlots = new List<string>();
+            var availableSlots = new List<TimeOnly>();
             var slotDuration = TimeSpan.FromMinutes(DefaultVisitLength);
             var currentTime = schedule.StartTime;
 
@@ -102,7 +105,7 @@ namespace ClinicManagementSystem.MVC.Controllers
                 );
 
                 if (!overlaps)
-                    availableSlots.Add(currentTime.ToString(@"hh\:mm"));
+                    availableSlots.Add(currentTime);
 
                 currentTime = currentTime.AddMinutes(DefaultVisitLength);  
             }
@@ -117,8 +120,6 @@ namespace ClinicManagementSystem.MVC.Controllers
             return start1 < end2 && start2 < end1;
         }
         #endregion
-
-
     }
 
 }

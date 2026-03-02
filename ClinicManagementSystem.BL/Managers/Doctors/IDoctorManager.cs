@@ -9,9 +9,8 @@ namespace ClinicManagementSystem.BL.Managers.Doctors
     public interface IDoctorManager
     {
         IEnumerable<DoctorReadVM> GetAll();
-        DoctorEditVM? GetForEditById(int id);
-        void Add(DoctorAddVM doctorAddVM);
-        void Edit(DoctorEditVM doctorEditVM);
-        void Delete(int id);
+      
+      
+         
     }
 }

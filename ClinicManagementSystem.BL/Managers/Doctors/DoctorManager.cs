@@ -14,20 +14,7 @@ namespace ClinicManagementSystem.BL.Managers.Doctors
         {
             _unitOfWork = unitOfWork;
         }
-        public void Add(DoctorAddVM doctorAddVM)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(DoctorEditVM doctorEditVM)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public IEnumerable<DoctorReadVM> GetAll()
         {
@@ -36,9 +23,6 @@ namespace ClinicManagementSystem.BL.Managers.Doctors
             return doctorsVM;
         }
 
-        public DoctorEditVM? GetForEditById(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

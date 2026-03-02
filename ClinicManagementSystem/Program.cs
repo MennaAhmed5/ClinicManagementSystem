@@ -10,6 +10,7 @@ using ClinicManagementSystem.DAL.Repositories.Patients;
 using ClinicManagementSystem.DAL.Repositories.Schedules;
 using ClinicManagementSystem.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace ClinicManagementSystem
 {
@@ -18,6 +19,10 @@ namespace ClinicManagementSystem
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var cultureInfo = new CultureInfo("en-GB");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -58,7 +63,7 @@ namespace ClinicManagementSystem
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                pattern: "{controller=Appointment}/{action=Add}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

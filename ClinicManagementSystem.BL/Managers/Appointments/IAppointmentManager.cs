@@ -7,11 +7,10 @@ namespace ClinicManagementSystem.BL.Managers.Appointments
 {
     public interface IAppointmentManager
     {
-        IEnumerable<AppointmentReadVM> GetAll();
-        AppointmentEditVM? GetForEditById(int id);
+         
+        
         void Add(AppointmentAddVM appointmentAddVM);
-        void Edit(AppointmentEditVM appointmentEditVM);
-        void Delete(int id);
+       
 
         IEnumerable<DoctorAppointmentsVM> GetAppointmentsByDoctorIdAndDate(int doctorId, DateOnly date);
 

@@ -25,22 +25,10 @@ namespace ClinicManagementSystem.BL.Managers.Appointments
                 EndTime = appointmentAddVM.StartTime.AddMinutes(30)
             };
             _unitOfWork.AppointmentRepository.Add(appointment);
+            _unitOfWork.SaveChanges();
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(AppointmentEditVM appointmentEditVM)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<AppointmentReadVM> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public IEnumerable<AppointmentReadVM> GetAllWithRelations()
         {
@@ -55,9 +43,6 @@ namespace ClinicManagementSystem.BL.Managers.Appointments
             return appointmentsVM;  
         }
 
-        public AppointmentEditVM? GetForEditById(int id)
-        {
-            throw new NotImplementedException();
-        }
+         
     }
 }

@@ -127,50 +127,7 @@ namespace ClinicManagementSystem.DAL.Data.Context
                 }
             );
             #endregion
-            #region Appointments
-            modelBuilder.Entity<Appointment>().HasData(
-
-            new Appointment
-            {
-               Id = 1,
-               DoctorId = 1,
-               PatientId = 1,
-               AppointmentDate = new DateOnly(2026, 3, 2),
-               StartTime = new TimeOnly(16, 0),
-               EndTime = new TimeOnly(16, 30),
-               
-            },
-            new Appointment
-            {
-               Id = 2,
-               DoctorId = 1,
-               PatientId = 2,
-               AppointmentDate = new DateOnly(2026, 3, 2),
-               StartTime = new TimeOnly(16, 30),
-               EndTime = new TimeOnly(17, 0),
-               
-            },
-            new Appointment
-            {
-               Id = 3,
-               DoctorId = 2,
-               PatientId = 3,
-               AppointmentDate = new DateOnly(2026, 3, 3),
-               StartTime = new TimeOnly(18, 0),
-               EndTime = new TimeOnly(18, 30),
-                
-            },
-             new Appointment
-              {
-                Id = 4,
-                DoctorId = 2,
-                PatientId = 4,
-                AppointmentDate = new DateOnly(2026, 3, 3),
-                StartTime = new TimeOnly(18, 30),
-                EndTime = new TimeOnly(19, 0),                
-               }
-            );
-            #endregion
+            
 
             #region schedule
             var schedules = new List<Schedule>();
