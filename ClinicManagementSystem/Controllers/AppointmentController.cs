@@ -4,7 +4,9 @@ using ClinicManagementSystem.BL.Managers.Patients;
 using ClinicManagementSystem.BL.Managers.Schedules;
 using ClinicManagementSystem.BL.ViewModels.Appointments;
 using ClinicManagementSystem.DAL.Data.Enums;
+using ClinicManagementSystem.DAL.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClinicManagementSystem.MVC.Controllers
 {
@@ -46,23 +48,37 @@ namespace ClinicManagementSystem.MVC.Controllers
         {
             if (!ModelState.IsValid)
                 return View("Add",appointmentAddVM);
-                        
-            if(appointmentAddVM.Patient != null)
+
+            if (appointmentAddVM.Patient != null)
             {
-              //check if patient exist 
-              var patient =  _patientManager.GetPatientbyNameAndBirthdate(appointmentAddVM.Patient.Name, appointmentAddVM.Patient.BirthDate);
-                
+                //check if patient exist 
+                var patient = _patientManager.GetPatientbyPhone(appointmentAddVM.Patient.Phone);
+
                 //if not exist add it  then get 
                 if (patient == null)
                 {
                     _patientManager.Add(appointmentAddVM.Patient);
-                     patient = _patientManager.GetPatientbyNameAndBirthdate(appointmentAddVM.Patient.Name, appointmentAddVM.Patient.BirthDate);
-                    
+                    patient = _patientManager.GetPatientbyPhone(appointmentAddVM.Patient.Phone);
+
 
                 }
                 if (patient != null)
                     appointmentAddVM.Patient.Id = patient.Id;
-               
+
+                //get doctor appointment
+                var appointments = _appointmentManager.GetAppointmentsByDoctorIdAndDate(appointmentAddVM.DoctorId, appointmentAddVM.AppointmentDate)
+                                .Select(a => new { a.StartTime, a.EndTime }).ToList();
+
+
+                //overlap 
+                var overlap = appointments.Where(x => x.StartTime == appointmentAddVM.StartTime && x.EndTime == appointmentAddVM.StartTime.AddMinutes(30)).ToList();
+
+
+                if (overlap.Any())
+                {
+                    return Json(new { message = "This time is not available. Please choose another time.", Status = "fail" });
+                }
+
                 //Add Appointment  in db 
                 _appointmentManager.Add(appointmentAddVM);
                
@@ -76,8 +92,8 @@ namespace ClinicManagementSystem.MVC.Controllers
         {
             //check parameters values
             if(doctorId == 0 || date == default(DateOnly))
-                return Json(new { Status = "fail", Data = new List<TimeOnly>() });
-            
+                
+            return Json(new { Status = "fail", Data = new List<TimeOnly>() });
             // Get schedule of selected doctor by doctorId and day
 
             var schedule = _scheduleManager.GetByDoctorIdAndDay(doctorId, (WorkDay)date.DayOfWeek);

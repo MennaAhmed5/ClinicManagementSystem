@@ -16,9 +16,9 @@ namespace ClinicManagementSystem.DAL.Repositories.Patients
             _context = context;
         }
 
-        public Patient? GetPatientbyNameAndBirthdate(string name, DateOnly birthDate)
+        public Patient? GetPatientbyPhone(string phone)
         {
-           return _context.Patients.Where(p => p.Name.ToLower() == name.ToLower() && p.BirthDate == birthDate).FirstOrDefault();
+           return _context.Patients.Where(p => p.Phone == phone).FirstOrDefault();
         }
     }
 }

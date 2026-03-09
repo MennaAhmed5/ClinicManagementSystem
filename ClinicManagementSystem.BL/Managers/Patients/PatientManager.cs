@@ -28,10 +28,10 @@ namespace ClinicManagementSystem.BL.Managers.Patients
         }
         
 
-        public PatientReadVM? GetPatientbyNameAndBirthdate(string name, DateOnly birthDate)
+        public PatientReadVM? GetPatientbyPhone(string phone)
         {
             
-            var Patient = _unitOfWork.PatientRepository.GetPatientbyNameAndBirthdate(name, birthDate);
+            var Patient = _unitOfWork.PatientRepository.GetPatientbyPhone(phone);
             
             if (Patient == null) return null;   
 

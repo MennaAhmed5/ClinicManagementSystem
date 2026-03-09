@@ -11,7 +11,7 @@ namespace ClinicManagementSystem.BL.Managers.Patients
        
         void Add(PatientAddVM patientAddVM);
 
-        PatientReadVM? GetPatientbyNameAndBirthdate(string name, DateOnly birthdate);
+        PatientReadVM? GetPatientbyPhone(string phone);
        
     }
 }

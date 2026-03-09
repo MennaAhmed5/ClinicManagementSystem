@@ -16,6 +16,7 @@
 
             $("#appointmentDate").datepicker({
                 dateFormat: "yy-mm-dd", 
+                minDate: 0,
                 beforeShowDay: function (date) {
                     var day = date.getDay();
                     // Check if the current day index is in the allowedDays array
